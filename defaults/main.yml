@@ -1,0 +1,4 @@
+---
+vim_dir: ~/.vim_runtime
+fonts_dir: ~/.fonts
+ibm_fonts_url: https://github.com/IBM/plex/releases/download/v3.0.0/TrueType.zip

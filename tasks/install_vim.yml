@@ -1,0 +1,24 @@
+---
+- name: Check if amix/vimrc already cloned
+  stat:
+    path: '{{ vim_dir }}'
+  register: vim_directory
+
+- name: Cloning amix/vimrc
+  git:
+    repo: https://github.com/amix/vimrc.git
+    dest: '{{ vim_dir }}'
+    version: 'HEAD'
+  when: not vim_directory.stat.exists
+
+- name: Enable execute on file
+  file:
+    path: '{{ vim_dir }}/install_awesome_vimrc.sh'
+    mode: '0755'
+  when: not vim_directory.stat.exists
+
+- name: Install amix/vimrc
+  command: '{{ vim_dir }}/install_awesome_vimrc.sh'
+  args:
+    chdir: ~/
+  when: not vim_directory.stat.exists

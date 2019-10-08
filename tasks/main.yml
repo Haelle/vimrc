@@ -1,0 +1,55 @@
+---
+- name: Install Vim
+  package:
+    name: vim
+    state: present
+
+- name: Clone & install amix/vimrc
+  include: install_vim.yml
+
+- name: Install plugins
+  git:
+    repo: '{{ item.url }}'
+    dest: '{{ vim_dir }}/my_plugins/{{ item.name }}'
+  with_items:
+    - url: https://github.com/tpope/vim-rails.git
+      name: vim-rails
+    - url: https://github.com/vim-ruby/vim-ruby.git
+      name: vim-ruby
+    - url: https://github.com/hwartig/vim-seeing-is-believing.git
+      name: vim-seeing-is-believing
+    - url: https://github.com/thoughtbot/vim-rspec.git
+      name: vim-rspec
+    - url: https://github.com/tpope/vim-endwise.git
+      name: vim-endwise
+    - url: https://github.com/pearofducks/ansible-vim.git
+      name: ansible-vim
+    - url: https://github.com/mhinz/vim-signify.git
+      name: vim-signify
+    - url: https://github.com/AndrewRadev/splitjoin.vim.git
+      name: splitjoin.vim
+
+- name: Copy my config
+  copy:
+    src: my_configs.vim
+    dest: '{{ vim_dir }}/my_configs.vim'
+
+# this plugin creates bugs in rails.vim
+- name: Disable open_file_under_cursor
+  file:
+    path: '{{ vim_dir }}/sources_non_forked/open_file_under_cursor.vim'
+    state: absent
+
+- name: Remove overriden conf of vim-multiple-cursors
+  blockinfile:
+    path: '{{ vim_dir }}/vimrcs/plugins_config.vim'
+    state: absent
+    marker_begin: '" => vim-multiple-cursors'
+    marker_end: "let g:multi_cursor_quit_key            = '<Esc>'"
+    marker: "{mark}"
+
+- name: Remap Ctrl+n for YankStack to Ctrl+o
+  lineinfile:
+    path: '{{ vim_dir }}/vimrcs/plugins_config.vim'
+    regexp: '.+yankstack_substitute_newer_paste'
+    line: nmap <c-o> <Plug>yankstack_substitute_newer_paste
