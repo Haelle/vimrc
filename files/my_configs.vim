@@ -44,8 +44,8 @@ augroup seeingIsBelievingSettings
 augroup END
 
 " remap SnipeMate to Ctrl+J
-imap <C-J> <esc>a<Plug>snipMateNextOrTrigger
-smap <C-J> <Plug>snipMateNextOrTrigger
+" imap <C-J> <esc>a<Plug>snipMateNextOrTrigger
+" smap <C-J> <Plug>snipMateNextOrTrigger
 
 " completion
 set wildmode=list:longest,list:full
@@ -72,6 +72,5 @@ function! InsertTabWrapper()
     return "\<c-p>"
   endif
 endfunction
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-
-
+" remap Ctrl+n (vim omnifunc) to Tab
+" inoremap <c-Space> <c-r>=InsertTabWrapper()<cr>
