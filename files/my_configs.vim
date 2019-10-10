@@ -7,14 +7,10 @@ autocmd BufWritePre * :%s/\s\+$//e
 " show all characters (trailing space, tab, eol)
 set list lcs=tab:▸\ ,eol:¬,trail:·
 
-" set tab to 2 for Ruby files
-au FileType ruby call RubyTab()
-function! RubyTab()
-  " nb auto indent spaces
-  set shiftwidth=2
-  " nb of spaces per tab
-  set softtabstop=2
-endfunction
+"nb auto indent spaces
+set shiftwidth=2
+" nb of spaces per tab
+set softtabstop=2
 
 " Remove indent after newline in YAML files
 let g:ansible_unindent_after_newline = 1
