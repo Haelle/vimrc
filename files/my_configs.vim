@@ -7,6 +7,9 @@ autocmd BufWritePre * :%s/\s\+$//e
 " show all characters (trailing space, tab, eol)
 set list lcs=tab:▸\ ,eol:¬,trail:·
 
+" Hiligh current selection in green
+hi IncSearch ctermbg=DarkGreen
+
 "nb auto indent spaces
 set shiftwidth=2
 " nb of spaces per tab
