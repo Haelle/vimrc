@@ -48,8 +48,8 @@
     marker_end: "let g:multi_cursor_quit_key            = '<Esc>'"
     marker: "{mark}"
 
-- name: Remap Ctrl+n for YankStack to Ctrl+o
+- name: Remap Ctrl+n for YankStack to Ctrl+k
   lineinfile:
     path: '{{ vim_dir }}/vimrcs/plugins_config.vim'
     regexp: '.+yankstack_substitute_newer_paste'
-    line: nmap <c-o> <Plug>yankstack_substitute_newer_paste
+    line: nmap <c-k> <Plug>yankstack_substitute_newer_paste
