@@ -1,0 +1,38 @@
+---
+- name: Disable search with space (1/2)
+  lineinfile:
+    path: '{{ vim_dir }}/vimrcs/basic.vim'
+    regexp: 'map <space> /'
+    state: absent
+
+- name: Disable search with space (2/2)
+  lineinfile:
+    path: '{{ vim_dir }}/vimrcs/basic.vim'
+    regexp: 'map <c-space> ?'
+    state: absent
+
+# this plugin creates bugs in rails.vim
+- name: Disable open_file_under_cursor
+  file:
+    path: '{{ vim_dir }}/sources_non_forked/open_file_under_cursor.vim'
+    state: absent
+
+# anoying & cannot type û when enabled
+- name: Disable auto-pair
+  file:
+    path: '{{ vim_dir }}/sources_non_forked/auto-pairs'
+    state: absent
+
+- name: Remove overriden conf of vim-multiple-cursors
+  blockinfile:
+    path: '{{ vim_dir }}/vimrcs/plugins_config.vim'
+    state: absent
+    marker_begin: '" => vim-multiple-cursors'
+    marker_end: "let g:multi_cursor_quit_key            = '<Esc>'"
+    marker: "{mark}"
+
+- name: Remap Ctrl+n for YankStack to Ctrl+k
+  lineinfile:
+    path: '{{ vim_dir }}/vimrcs/plugins_config.vim'
+    regexp: '.+yankstack_substitute_newer_paste'
+    line: nmap <c-k> <Plug>yankstack_substitute_newer_paste

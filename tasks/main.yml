@@ -34,22 +34,5 @@
     src: my_configs.vim
     dest: '{{ vim_dir }}/my_configs.vim'
 
-# this plugin creates bugs in rails.vim
-- name: Disable open_file_under_cursor
-  file:
-    path: '{{ vim_dir }}/sources_non_forked/open_file_under_cursor.vim'
-    state: absent
-
-- name: Remove overriden conf of vim-multiple-cursors
-  blockinfile:
-    path: '{{ vim_dir }}/vimrcs/plugins_config.vim'
-    state: absent
-    marker_begin: '" => vim-multiple-cursors'
-    marker_end: "let g:multi_cursor_quit_key            = '<Esc>'"
-    marker: "{mark}"
-
-- name: Remap Ctrl+n for YankStack to Ctrl+k
-  lineinfile:
-    path: '{{ vim_dir }}/vimrcs/plugins_config.vim'
-    regexp: '.+yankstack_substitute_newer_paste'
-    line: nmap <c-k> <Plug>yankstack_substitute_newer_paste
+- name: Remove amix/vimrc plugins
+  include: remove_plugins.yml
