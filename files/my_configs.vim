@@ -73,3 +73,6 @@ function! InsertTabWrapper()
 endfunction
 " remap Ctrl+n (vim omnifunc) to Tab
 " inoremap <c-Space> <c-r>=InsertTabWrapper()<cr>
+
+" Disable auto-folding in markdown
+let g:vim_markdown_folding_disabled = 1
