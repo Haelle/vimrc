@@ -31,10 +31,11 @@ In NerdTree:
 - seeing is believing: `F4/F5/F6` mark/run/mark&run code
 - Ack: `Ack <keyword> <dir>` search through files
 - Find: `<Ctrl+F>` find files by name
-- Snipets: `Ctrl+J>` (see them with `:SnipMateOpenSnippetFiles`) (temporarly set back to `<Tab>` for tests)
+- Snipets: `<Ctrl+J>` (see them with `:SnipMateOpenSnippetFiles`) (temporarly set back to `<Tab>` for tests)
 - Comments: `gc, gcc, gcu`
 - Swich between single-line to multi-line code `gJ/gS`
 - quick replace: `<Ctr+n><Ctrl+n>cNewVarName`
+- fix lint: `<,l>`
 
 ### Automatic usage
 
