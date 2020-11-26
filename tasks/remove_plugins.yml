@@ -36,3 +36,9 @@
     path: '{{ vim_dir }}/vimrcs/plugins_config.vim'
     regexp: '.+yankstack_substitute_newer_paste'
     line: nmap <c-k> <Plug>yankstack_substitute_newer_paste
+
+- name: Disable Javascript auto-folding
+  lineinfile:
+    path: '{{ vim_dir }}/vimrcs/filetypes.vim'
+    regexp: 'au FileType javascript call JavaScriptFold()'
+    line: '" au FileType javascript call JavaScriptFold()'
