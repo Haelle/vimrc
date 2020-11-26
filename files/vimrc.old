@@ -1,0 +1,232 @@
+" Set the leader
+let mapleader=","
+
+" General config
+set history=1000   " big phat history
+set ruler          " show the cursor position all the time
+set showcmd        " display incomplete commands
+set incsearch      " do incremental searching
+set laststatus=2   " Always display the status line
+set number         " Line numbers are good
+set gdefault       " subtitutions globally on lines
+set showmode       " Show current mode down the bottom
+set gcr=a:blinkon0 " Disable cursor blink
+set visualbell     " No sounds
+set autoread       " Reload files changed outside vim
+set hidden         " buffer can exist in background
+set modeline
+set modelines=1
+set t_Co=256
+set mouse-=a
+set belloff=all    " disable visual bell
+
+" Turn off swap files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" completion
+set wildmode=list:longest
+set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildignore+=*vim/backups*
+set wildignore+=*sass-cache*
+set wildignore+=*DS_Store*
+set wildignore+=vendor/rails/**
+set wildignore+=vendor/cache/**
+set wildignore+=*.gem
+set wildignore+=log/**
+set wildignore+=tmp/**
+set wildignore+=*.png,*.jpg,*.gif
+
+" for mark
+nnoremap ` '
+"
+"" fold
+set foldmethod=indent   "fold based on indent
+set foldnestmax=3       "deepest fold is 3 levels
+set nofoldenable        "dont fold by default
+
+" Easy split navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Vertical resize shortcuts
+nnoremap <silent> <Leader>[ :exe "vertical resize " . (winwidth(0) * 3/4)<CR>
+nnoremap <silent> <Leader>] :exe "vertical resize " . (winwidth(0) * 4/3)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
+
+" Open new split and focus on it
+nnoremap <leader>w <C-w>v<C-w>l
+
+" Reselect paste line
+nnoremap <leader>v V`]
+
+" Display extra whitespace
+set list listchars=tab:»·,trail:·
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
+  syntax on
+  set hlsearch
+endif
+"
+" Tab completion
+" will insert tab at beginning of line,
+" will use completion if not at beginning
+set wildmode=list:longest,list:full
+set complete=.,w,t
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+
+augroup vimrcEx
+  au!
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it for commit messages, when the position is invalid, or when
+  " inside an event handler (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+        \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
+augroup END
+
+" Keep undo
+silent !mkdir ~/.vim/backups > /dev/null 2>&1
+set undodir=~/.vim/backups
+set undofile
+
+" ALE Linter config :
+let g:ale_lint_on_text_changed = 'never'
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+" only on save
+let g:ale_lint_on_save = 0
+
+" For plugins
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
+
+" Softtabs, 2 spaces
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
+set backspace=2
+filetype plugin on
+" Tabulation no spaces
+"set autoindent
+"set smartindent
+"set noexpandtab
+"set tabstop=4
+"set shiftwidth=4
+"
+filetype indent on
+
+"" Ctags
+" Index ctags from any project, including those outside Rails
+map <Leader>ct :!ctags -R .<CR>
+
+" quick ctags
+nnoremap <leader>a :Ack
+
+" vim-rspec mappings
+nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
+nnoremap <Leader>s :call RunNearestSpec()<CR>
+nnoremap <Leader>l :call RunLastSpec()<CR>
+
+nnoremap <Leader>k :AV<CR>
+
+" Use Ag (https://github.com/ggreer/the_silver_searcher) instead of Grep when
+" available
+if executable("ag")
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
+" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
+
+"" Markdown
+" Set syntax highlighting for specific file types
+au BufRead,BufNewFile *.md set filetype=markdown
+
+" Finally, local config
+if filereadable($HOME . "/.vimrc.local")
+  source ~/.vimrc.local
+endif
+
+autocmd BufWritePre * :%s/\s\+$//e
+
+nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <leader>d :Dash<cr>
+
+imap ,/ </<C-X><C-O><ESC>x
+
+autocmd VimResized * :normal =
+
+let g:slime_target = "tmux"
+
+nnoremap <Leader>c :tabclose<cr>
+
+set backspace=indent,eol,start     " allow backspacing over everything in insert mode
+set encoding=utf-8                 " /o/
+"set si                            " smart indent
+set ignorecase                     " ignore case when tabbing
+" set cursorline                   " underline cursor
+set noshowmatch                    " show matching brackets
+set scrolloff=3                    " scroll to 3 lines
+set wrap                           " wrap lines !
+set ttyfast                        " rendering
+set list lcs=tab:▸\ ,eol:¬,trail:· " show all characters
+set background=dark
+colorscheme desert               " my color scheme
+
+" remap Ctrl+n to open Nerd Tree
+map <C-n> :NERDTreeToggle<CR>
+
+" set the colors of the tabline
+hi TabLineFill ctermfg=Black ctermbg=Black
+hi TabLine ctermfg=White ctermbg=DarkGreen
+hi TabLineSel ctermfg=Black ctermbg=Yellow
+
+" Auto filetype
+autocmd BufNewFile,BufRead *.html.twig set syntax=html
+autocmd BufNewFile,BufRead *.md.erb    set syntax=markdown
+autocmd BufNewFile,BufRead *.xml.erb   set syntax=xml
+
+" Enable seeing-is-believing mappings only for Ruby
+augroup seeingIsBelievingSettings
+  autocmd!
+
+  autocmd FileType ruby nmap <buffer> <F6> <Plug>(seeing-is-believing-mark-and-run)
+  autocmd FileType ruby xmap <buffer> <F6> <Plug>(seeing-is-believing-mark-and-run)
+
+  autocmd FileType ruby nmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+  autocmd FileType ruby xmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+  autocmd FileType ruby imap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+
+  autocmd FileType ruby nmap <buffer> <F5> <Plug>(seeing-is-believing-run)
+  autocmd FileType ruby imap <buffer> <F5> <Plug>(seeing-is-believing-run)
+augroup END
+
+function s:CompleteTags()
+  inoremap <buffer> > ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR>
+  inoremap <buffer> ><Leader> >
+  inoremap <buffer> ><CR> ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR><CR><Tab><CR><Up><C-O>$
+endfunction
+autocmd BufRead,BufNewFile *.html,*.js,*.xml call s:CompleteTags()
