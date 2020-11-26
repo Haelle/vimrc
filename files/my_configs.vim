@@ -76,3 +76,11 @@ endfunction
 
 " Disable auto-folding in markdown
 let g:vim_markdown_folding_disabled = 1
+
+" ALE Linter/Fixer
+map <Leader>l :ALEFix<CR>
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'ruby': ['rubocop'],
+\   'javascript': ['prettier', 'eslint'],
+\}
