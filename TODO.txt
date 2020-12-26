@@ -1,0 +1,10 @@
+Auto
+- identation YAML se remet alors que ça a été annulé
+Manual
+- coc-fix-current does not work
+- Tmux navigation commands
+- Tmux splits ?
+- Tmux navigator
+- auto import in Javascrip
+
+- NERDTree hilight currently focused file

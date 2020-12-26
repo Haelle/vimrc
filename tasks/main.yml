@@ -1,42 +1,54 @@
 ---
-- name: Install Vim
-  package:
-    name: vim
+- name: Install NeoVim (& dependencies)
+  become: "yes"
+  apt:
+    pkg:
+      - fzf
+      - git
+      - neovim
+      - nodejs
+      - npm
+      - silversearcher-ag
     state: present
 
-- name: Clone & install amix/vimrc
-  include: install_vim.yml
-
-- name: Install plugins
-  git:
-    repo: '{{ item.url }}'
-    dest: '{{ vim_dir }}/my_plugins/{{ item.name }}'
+- name: Create NeoVim directories
+  file:
+    path: "{{ vim_dir }}/{{ item }}"
+    state: directory
+    mode: "0755"
   with_items:
-    - url: https://github.com/tpope/vim-rails.git
-      name: vim-rails
-    - url: https://github.com/vim-ruby/vim-ruby.git
-      name: vim-ruby
-    - url: https://github.com/hwartig/vim-seeing-is-believing.git
-      name: vim-seeing-is-believing
-    - url: https://github.com/thoughtbot/vim-rspec.git
-      name: vim-rspec
-    - url: https://github.com/tpope/vim-endwise.git
-      name: vim-endwise
-    - url: https://github.com/pearofducks/ansible-vim.git
-      name: ansible-vim
-    - url: https://github.com/mhinz/vim-signify.git
-      name: vim-signify
-    - url: https://github.com/AndrewRadev/splitjoin.vim.git
-      name: splitjoin.vim
-    - url: https://github.com/posva/vim-vue
-      name: vim-vue
-    - url: https://github.com/leafOfTree/vim-vue-plugin
-      name: vim-vue-plugin
+    - autoload
+    - plugged
 
-- name: Copy my config
+- name: Copy init.vim config
   copy:
-    src: my_configs.vim
-    dest: '{{ vim_dir }}/my_configs.vim'
+    src: init.vim
+    dest: "{{ vim_dir }}/init.vim"
+  register: vim_config
 
-- name: Remove amix/vimrc plugins
-  include: remove_plugins.yml
+- name: Install Plug.vim
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: "{{ vim_dir }}/autoload/plug.vim"
+    mode: "0755"
+  register: vim_config
+
+- name: Install plugins  # noqa 305 503
+  shell: nvim --headless +PlugInstall +qall
+  when: vim_config.changed
+
+- name: Install SolarGraph gem for Ruby CoC
+  community.general.gem:
+    name: solargraph
+    state: present
+
+- name: Install NeoVim gem for CoC
+  community.general.gem:
+    name: neovim
+    state: present
+
+- name: Copy CoC settings
+  copy:
+    src: coc-settings.json
+    dest: "{{ vim_dir }}/coc-settings.json"
+    mode: "0755"
