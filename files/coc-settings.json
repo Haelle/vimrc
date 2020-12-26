@@ -1,0 +1,19 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "csharp",
+    "html",
+    "javascript",
+    "json",
+    "markdown",
+    "react",
+    "ruby",
+    "vuejs",
+    "yaml"
+  ],
+  "markdownlint.config": {
+    "default": true,
+    "line_length": false
+  },
+  "solargraph.diagnostics": true
+}

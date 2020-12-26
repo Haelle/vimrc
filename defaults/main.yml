@@ -1,4 +1,8 @@
 ---
-vim_dir: ~/.vim_runtime
+# vim_dir is not really a var
+# the value is directly used in the init.vim
+# this is just for typos
+vim_dir: ~/.config/nvim
+
 fonts_dir: ~/.fonts
 ibm_fonts_url: https://github.com/IBM/plex/releases/download/v3.0.0/TrueType.zip
