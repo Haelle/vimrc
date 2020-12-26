@@ -28,6 +28,7 @@ Full/seamless support for theses languages/syntax :
 - Markdown
 - C#
 
+
 Target is to have **0 buggy behaviours**
 
 ### Theme & Font
