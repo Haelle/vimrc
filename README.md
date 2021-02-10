@@ -90,6 +90,7 @@ Ruby & Rails related :
 - add Ruby pairs (def/end, do/end)
 - add Git infos in the gutter
 - add linter infos in the gutter or with underline
+- show method definition when available (use `<C-a>` and `<C-b>` to scroll after and before)
 
 #### Search
 
