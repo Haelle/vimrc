@@ -67,6 +67,7 @@ Possibility to navigate with splits, tabs & Tmux:
 - `<C-o>` : back
 - `<C-s>` : save
 - `<C-space>` : trigger autocompletion engine
+- `<tab>` : navigate through completion propositions
 - `<C-c>` : comment / uncomment (line or selection)
 
 Ruby & Rails related :
