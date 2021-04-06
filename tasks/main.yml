@@ -26,6 +26,7 @@
   copy:
     src: init.vim
     dest: "{{ vim_dir }}/init.vim"
+    mode: "0644"
   register: vim_config
 
 - name: Install Plug.vim

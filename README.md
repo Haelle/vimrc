@@ -150,6 +150,7 @@ Usefull commands :
 - `:checkhealth`
 - `:CocList extensions`
 - ~~`:call CocAction('format')`~~
+- `:CocList marketplace python`
 
 Keep in mind [available extentions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions) :
 

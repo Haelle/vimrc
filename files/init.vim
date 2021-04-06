@@ -75,6 +75,7 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-html',
   \ 'coc-markdownlint',
+  \ 'CocInstall coc-marketplace',
   \ 'coc-omnisharp',
   \ 'coc-pairs',
   \ 'coc-prettier',
