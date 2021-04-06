@@ -28,7 +28,6 @@ Full/seamless support for theses languages/syntax :
 - Markdown
 - C#
 
-
 Target is to have **0 buggy behaviours**
 
 ### Theme & Font
@@ -63,7 +62,9 @@ Possibility to navigate with splits, tabs & Tmux:
 - `gg=G` : reformat code
 - `F2` : rename var / method / class
 - `<C-k>` : show method definition
-- `qf` : run linter fix
+- `qf` : run linter fix - does not work well...
+- `fr` : run formatter on the current line (not working on Solargraph/Ruby)
+- `fa` : run formatter on the whole file
 - `<C-o>` : back
 - `<C-s>` : save
 - `<C-space>` : trigger autocompletion engine

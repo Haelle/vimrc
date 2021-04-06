@@ -87,9 +87,12 @@ let g:coc_global_extensions = [
   \ ]
 
 nmap <silent> qf <Plug>(coc-fix-current)
+nmap <silent> fa <Plug>(coc-format)
+vmap <silent> fr <Plug>(coc-format-selected)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <F2> <Plug>(coc-rename)
 
 " Show code documentation
 nnoremap <C-k> :call <SID>show_documentation()<CR>
@@ -117,6 +120,11 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Use <Ctrl-Space> to trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -256,9 +264,6 @@ nmap <C-w><C-Up> <C-w><S-k>
 nmap <C-w><C-Down> <C-w><S-j>
 nmap <C-w><C-Left> <C-w><s-h>
 nmap <C-w><C-Right> <C-w><S-l>
-
-" Remap for rename current word
-nmap <F2> <Plug>(coc-rename)
 
 " Highlight TODO in comments
 syntax keyword myTodo  TODO  contained

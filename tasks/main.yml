@@ -9,6 +9,8 @@
       - nodejs
       - npm
       - silversearcher-ag
+      - ruby
+      - ruby-dev
     state: present
 
 - name: Create NeoVim directories
