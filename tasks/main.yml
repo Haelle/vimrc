@@ -44,11 +44,13 @@
   community.general.gem:
     name: solargraph
     state: present
+  ignore_errors: 'yes'
 
 - name: Install NeoVim gem for CoC
   community.general.gem:
     name: neovim
     state: present
+  ignore_errors: 'yes'
 
 - name: Copy CoC settings
   copy:
