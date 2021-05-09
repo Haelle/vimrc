@@ -36,6 +36,7 @@ set number
 set encoding=UTF-8
 set history=1000
 set background=dark
+set scrolloff=3
 colorscheme slate
 highlight NormalFloat cterm=NONE ctermfg=14 ctermbg=0 gui=NONE guifg=#93a1a1 guibg=#002931
 
