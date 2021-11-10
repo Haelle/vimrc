@@ -70,11 +70,16 @@ Possibility to navigate with splits, tabs & Tmux:
 - `<C-space>` : trigger autocompletion engine
 - `<tab>` : navigate through completion propositions
 - `<C-c>` : comment / uncomment (line or selection)
+- `bufdo!` : use `!` in order not to save the files (with this configuration it's mandatory...)
 
 Ruby & Rails related :
 
 - `<C-q>` : switch between Ruby spec and file
 - `<C-w>t/s/l/a` run test/spec (file, nearest, last, all)
+
+Other :
+
+- suspend vim `Ctrl+z` and back with fg
 
 ### Automatic / passive functionalities
 

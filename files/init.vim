@@ -53,7 +53,7 @@ set expandtab
 "
 """""""""""""""""""""""""""""""""""""""""""""""""
 
-" Disable hilighting in sign column
+" Disable highlighting in sign column
 highlight clear SignColumn
 
 " Git gutter colors
@@ -157,7 +157,7 @@ set hlsearch
 highlight Search ctermbg=DarkGreen ctermfg=White
 highlight IncSearch ctermbg=DarkGreen ctermfg=White
 
-" Disable hilighting after search with Escape
+" Disable highlighting after search with Escape
 nmap <Esc> :noh<CR>
 
 " Map Ctrl-F / Ctrl-Shift-F
@@ -271,3 +271,7 @@ nmap <C-w><C-Right> <C-w><S-l>
 syntax keyword myTodo  TODO  contained
 syntax keyword myFixme FIXME contained
 syntax keyword myXXX   XXX   contained
+
+" Highlight non-ASCII characters
+au BufReadPost * syntax match nonascii "[^\u0000-\u007F]"
+highlight nonascii ctermbg=DarkRed ctermfg=Yellow
