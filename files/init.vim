@@ -24,6 +24,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'farmergreg/vim-lastplace'
 " Git gutter
 Plug 'airblade/vim-gitgutter'
+" Cooklang support
+Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
 
 " Initialize plugin system
 call plug#end()
