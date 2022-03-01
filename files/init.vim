@@ -242,7 +242,7 @@ nmap <C-q> :w<CR>:A<CR>
 imap <C-q> <Esc>:w<CR>:A<CR>i
 
 " Display invisible characters (tabs, end of line, trailing spaces)
-set list listchars=tab:»·,eol:¬,trail:·
+set list listchars=tab:»·,eol:¬,trail:·,nbsp:⋅
 
 " auto remove trailing white space on save
 autocmd BufWritePre * :%s/\s\+$//e
