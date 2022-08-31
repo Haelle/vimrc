@@ -146,8 +146,9 @@ imap <C-n> <Esc>:NERDTreeToggle<CR>i
 let g:NERDTreeWinPos = "right"
 let NERDTreeIgnore = ['\.git$', '\.pioenvs$', '\.swp', '^node_modules$', '^vendor$']
 
-" TODO: sync with currently opened file
-
+" Open and focus with currently opened file
+nmap <C-A-n> :NERDTreeFind<CR>
+imap <C-A-n> <Esc>:NERDTreeFind<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Search

@@ -175,6 +175,7 @@ No mandatory params, all params are in `defaults/main.yml`
 - hosts: locahost
   roles:
     - role: vimrc
+      vim_user: foo
 ```
 
 ## Development usage
