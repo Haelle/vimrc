@@ -172,7 +172,7 @@ No mandatory params, all params are in `defaults/main.yml`
 ## Example Playbook
 
 ```yaml
-- hosts: locahost
+- hosts: localhost
   roles:
     - role: vimrc
       vim_user: foo
