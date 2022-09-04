@@ -16,6 +16,11 @@
     "line_length": false
   },
   "solargraph.diagnostics": true,
+  "solargraph.rename": true,
+  "solargraph.symbols": true,
+  "solargraph.completion": true,
+  "solargraph.definitions": true,
+  "coc.preferences.useQuickfixForLocations": true,
   "suggest.noselect": true,
   "suggest.autoTrigger": "always",
   "suggest.selection": "recentlyUsedByPrefix"
