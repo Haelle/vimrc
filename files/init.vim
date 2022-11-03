@@ -26,6 +26,8 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-gitgutter'
 " Cooklang support
 Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
+" Copilot
+Plug 'github/copilot.vim'
 
 " Initialize plugin system
 call plug#end()
