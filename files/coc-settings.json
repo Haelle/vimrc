@@ -23,5 +23,6 @@
   "coc.preferences.useQuickfixForLocations": true,
   "suggest.noselect": true,
   "suggest.autoTrigger": "always",
-  "suggest.selection": "recentlyUsedByPrefix"
+  "suggest.selection": "recentlyUsedByPrefix",
+  "snippets.ultisnips.enable": false
 }
