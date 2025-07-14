@@ -1,2 +1,2 @@
 ---
-# vars file for vimrc
+install_coc: true

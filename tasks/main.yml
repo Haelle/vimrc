@@ -42,17 +42,27 @@
   shell: nvim --headless +PlugInstall +qall
   when: vim_config.changed
 
+- name: Install Ruby for Solargraph & CoC
+  apt:
+    pkg:
+      - ruby
+      - ruby-dev
+    state: present
+  when: install_coc
+
 - name: Install SolarGraph gem for Ruby CoC
   community.general.gem:
     name: solargraph
     state: present
   ignore_errors: 'yes'
+  when: install_coc
 
 - name: Install NeoVim gem for CoC
   community.general.gem:
     name: neovim
     state: present
   ignore_errors: 'yes'
+  when: install_coc
 
 - name: Copy CoC settings
   copy:
@@ -60,3 +70,4 @@
     dest: "{{ vim_dir }}/coc-settings.json"
     mode: "0755"
   become_user: "{{ vim_user }}"
+  when: install_coc
